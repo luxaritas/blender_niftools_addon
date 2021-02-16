@@ -86,7 +86,7 @@ class Scene(PropertyGroup):
         items=[
             (_game_to_enum(game), game, "Export for " + game)
             for game in sorted(
-                [x for x in NifFormat.games.keys() if x != '?'])
+                [*(x for x in NifFormat.games.keys() if x != '?'), 'LEGO Universe'])
         ],
         name="Game",
         description="For which game to export.",
@@ -96,7 +96,7 @@ class Scene(PropertyGroup):
     # Map game enum to nif version.
     VERSION = {
         _game_to_enum(game): versions[-1]
-        for game, versions in NifFormat.games.items() if game != '?'
+        for game, versions in [*NifFormat.games.items(), ('LEGO Universe', (335740937,))] if game != '?'
     }
 
     USER_VERSION = {

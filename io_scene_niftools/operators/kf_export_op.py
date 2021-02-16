@@ -67,7 +67,7 @@ class KfExportOperator(Operator, ExportHelper, CommonDevOperator, CommonScale, C
     game: bpy.props.EnumProperty(
         items=[
             (_game_to_enum(game), game, "Export for " + game)
-            for game in reversed(sorted([x for x in NifFormat.games.keys() if x != '?']))
+            for game in reversed(sorted([*(x for x in NifFormat.games.keys() if x != '?'), 'LEGO Universe']))
         ],
         name="Game",
         description="For which game to export.",
@@ -76,7 +76,7 @@ class KfExportOperator(Operator, ExportHelper, CommonDevOperator, CommonScale, C
     # Map game enum to nif version.
     version = {
         _game_to_enum(game): versions[-1]
-        for game, versions in NifFormat.games.items() if game != '?'
+        for game, versions in [*NifFormat.games.items(), ('LEGO Universe', (335740937,))] if game != '?'
     }
 
     # Use BSAnimationNode (for Morrowind).

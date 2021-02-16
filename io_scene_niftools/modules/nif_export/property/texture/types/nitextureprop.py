@@ -87,9 +87,15 @@ class NiTextureProp(TextureSlotManager):
 
         texprop = NifFormat.NiTexturingProperty()
 
-        texprop.flags = flags
+        if bpy.context.scene.niftools_scene.game == 'LEGO_UNIVERSE':
+            texprop.flags = 4
+        else:
+            texprop.flags = flags
         texprop.apply_mode = applymode
-        texprop.texture_count = 7
+        if bpy.context.scene.niftools_scene.game == 'LEGO_UNIVERSE':
+            texprop.texture_count = 9
+        else:
+            texprop.texture_count = 7
 
         self.export_texture_shader_effect(texprop)
         self.export_nitextureprop_tex_descs(texprop)

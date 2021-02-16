@@ -140,7 +140,7 @@ class NifExportOperator(Operator, ExportHelper, CommonDevOperator, CommonNif, Co
     # Map game enum to nif version.
     version = {
         _game_to_enum(game): versions[-1]
-        for game, versions in NifFormat.games.items() if game != '?'
+        for game, versions in [*NifFormat.games.items(), ('LEGO Universe', (335740937,))] if game != '?'
     }
 
     def draw(self, context):

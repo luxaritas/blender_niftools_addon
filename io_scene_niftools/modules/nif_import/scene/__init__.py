@@ -50,7 +50,7 @@ def import_version_info(data):
     
     #filter possible games by nif version
     possible_games = []
-    for game, versions in NifFormat.games.items():
+    for game, versions in [*NifFormat.games.items(), ('LEGO Universe', (335740937,))]:
         if game != '?':
             if scene.nif_version in versions:
                 game_enum = _game_to_enum(game)
